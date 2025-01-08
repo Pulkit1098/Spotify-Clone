@@ -19,7 +19,7 @@ function formatTime(seconds) {
 // Function to fetch songs from a given folder
 async function getSongs(folder){
     currFolder = folder; // Set the current folder
-    let a = await fetch(`http://127.0.0.1:3000/${currFolder}/`) // Fetch the folder's content
+    let a = await fetch(`https://raw.githubusercontent.com/Pulkit1098/Spotify-Clone/main/${currFolder}/`) // Fetch the folder's content
     let response = await a.text(); // Get the response as text
     let div = document.createElement("div")
     div.innerHTML = response; // Parse the response as HTML
@@ -73,7 +73,7 @@ const playmusic = (track, pause=false)=>{
 
 // Function to dynamically display albums from the server
 async function displayAlbums(){
-    let a = await fetch(`http://127.0.0.1:3000/songs/`) // Fetch the songs directory
+    let a = await fetch(`https://raw.githubusercontent.com/Pulkit1098/Spotify-Clone/main/songs/`) // Fetch the songs directory
     let response = await a.text(); // Get the response as text
     let div = document.createElement("div")
     div.innerHTML = response; // Parse the response as HTML
@@ -85,13 +85,13 @@ async function displayAlbums(){
         
         if (e.href.includes("/songs") && !e.href.includes(".htaccess")) { // Filter folders containing songs
             let folder = e.href.split("/").slice(-2)[0] // Get the folder name
-            let a = await fetch(`http://127.0.0.1:3000/songs/${folder}/info.json`) // Fetch the album metadata
+            let a = await fetch(`https://raw.githubusercontent.com/Pulkit1098/Spotify-Clone/main/songs/${folder}/info.json`) // Fetch the album metadata
             let response = await a.json(); // Parse the metadata as JSON
             cardcontainer.innerHTML = cardcontainer.innerHTML + `<div data-folder="${folder}" class="card">
             <div class="play">
               <img src="image/hoverbutton.svg" alt="Hover to play">
             </div>
-            <img src="http://127.0.0.1:3000/songs/${folder}/cover.jpeg" alt="Album cover"/>
+            <img src="https://raw.githubusercontent.com/Pulkit1098/Spotify-Clone/main/songs/${folder}/cover.jpeg" alt="Album cover"/>
             <h3>${response.title}</h3>
             <p>${response.description}</p>
           </div>` // Add the album card to the page
