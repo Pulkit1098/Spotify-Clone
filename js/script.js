@@ -60,7 +60,9 @@ async function getSongs(folder){
 
 // Function to play the selected music
 const playmusic = (track, pause=false)=>{
-    currentsong.src = `http://127.0.0.1:3000/${currFolder}/` + track; // Set the source of the song
+    // currentsong.src = `http://127.0.0.1:3000/${currFolder}/` + track; // Set the source of the song
+    currentsong.src = `https://raw.githubusercontent.com/Pulkit1098/Spotify-Clone/main/${currFolder}/${track}`;
+
     if(!pause){
         currentsong.play() // Play the song if not paused
         play.src = "image/pause.svg" // Change play button to pause icon
